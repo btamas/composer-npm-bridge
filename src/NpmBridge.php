@@ -16,6 +16,7 @@ class NpmBridge
     const EXTRA_KEY = 'npm-bridge';
     const EXTRA_KEY_OPTIONAL = 'optional';
     const EXTRA_KEY_TIMEOUT = 'timeout';
+    const EXTRA_KEY_NPM_ARGUMENTS = 'arguments';
 
     /**
      * Construct a new Composer NPM bridge plugin.
@@ -61,7 +62,7 @@ class NpmBridge
                 $this->io->write('Skipping as NPM is unavailable');
             } else {
                 $this->client
-                    ->install(null, $isDevMode, $this->packageTimeout($extra));
+                    ->install(null, $isDevMode, $this->packageTimeout($extra), $this->getNpmArguments($extra));
             }
         } else {
             $this->io->write('Nothing to install');
@@ -183,6 +184,14 @@ class NpmBridge
     private function isPackageOptional(array $extra)
     {
         return !empty($extra[self::EXTRA_KEY][self::EXTRA_KEY_OPTIONAL]);
+    }
+
+    private function getNpmArguments(array $extra) {
+        if (isset($extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS])) {
+            return $extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS];
+        }
+
+        return [];
     }
 
     private $io;

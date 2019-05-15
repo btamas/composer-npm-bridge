@@ -72,8 +72,6 @@ class NpmClient
 
         $arguments = array_merge($arguments, $npmArguments);
 
-        var_dump($arguments);
-
         if ($timeout === null) {
             $timeout = self::DEFAULT_TIMEOUT;
         }
@@ -119,6 +117,8 @@ class NpmClient
 
         array_unshift($arguments, $npmPath);
         $command = implode(' ', array_map('escapeshellarg', $arguments));
+
+        var_dump($command);
 
         if (null !== $workingDirectoryPath) {
             $previousWorkingDirectoryPath = call_user_func($this->getcwd);

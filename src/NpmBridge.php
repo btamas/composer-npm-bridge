@@ -191,12 +191,9 @@ class NpmBridge
 
     private function getNpmArguments(array $extra) {
         if (isset($extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS])) {
-            echo "NPM argument key is there";
-            var_dump($extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS]);
             return $extra[self::EXTRA_KEY][self::EXTRA_KEY_NPM_ARGUMENTS];
         }
 
-        echo "NPM argument key is NOT there";
         return [];
     }
 

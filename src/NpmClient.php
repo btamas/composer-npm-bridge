@@ -118,8 +118,6 @@ class NpmClient
         array_unshift($arguments, $npmPath);
         $command = implode(' ', array_map('escapeshellarg', $arguments));
 
-        var_dump($command);
-
         if (null !== $workingDirectoryPath) {
             $previousWorkingDirectoryPath = call_user_func($this->getcwd);
             call_user_func($this->chdir, $workingDirectoryPath);
@@ -128,6 +126,8 @@ class NpmClient
         $oldTimeout = call_user_func($this->getTimeout);
         call_user_func($this->setTimeout, $timeout);
 
+        var_dump($command);
+        $this->processExecutor('pwd');
         $exitCode = $this->processExecutor->execute($command);
 
         call_user_func($this->setTimeout, $oldTimeout);

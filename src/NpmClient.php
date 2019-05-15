@@ -72,6 +72,8 @@ class NpmClient
 
         $arguments = array_merge($arguments, $npmArguments);
 
+        var_dump($arguments);
+
         if ($timeout === null) {
             $timeout = self::DEFAULT_TIMEOUT;
         }

@@ -127,7 +127,7 @@ class NpmClient
         call_user_func($this->setTimeout, $timeout);
 
         var_dump($command);
-        $this->processExecutor('pwd');
+        $this->processExecutor->execute('pwd');
         $exitCode = $this->processExecutor->execute($command);
 
         call_user_func($this->setTimeout, $oldTimeout);

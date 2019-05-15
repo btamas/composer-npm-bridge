@@ -88,7 +88,9 @@ class NpmBridge
         $package = $composer->getPackage();
 
         if ($this->isDependantPackage($package, true)) {
-            $timeout = $this->packageTimeout($package->getExtra());
+            $extra = $package->getExtra();
+            $timeout = $this->packageTimeout($extra);
+            
 
             $this->client->update(null, $timeout);
             $this->client->install(null, true, $timeout, $this->getNpmArguments($extra));

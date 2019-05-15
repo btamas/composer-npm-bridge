@@ -91,7 +91,7 @@ class NpmBridge
             $timeout = $this->packageTimeout($package->getExtra());
 
             $this->client->update(null, $timeout);
-            $this->client->install(null, true, $timeout);
+            $this->client->install(null, true, $timeout, $this->getNpmArguments($extra));
         } else {
             $this->io->write('Nothing to update');
         }
@@ -165,7 +165,8 @@ class NpmBridge
                 $this->client->install(
                     $installationManager->getInstallPath($package),
                     false,
-                    $this->packageTimeout($extra)
+                    $this->packageTimeout($extra),
+                    $this->getNpmArguments($extra)
                 );
             }
         } else {
